@@ -69,7 +69,7 @@ const Timer = () => {
       </div>
 
       <div className={"bg-white rounded-xl shadow-sm border p-12 text-center " + (brk ? "bg-emerald-50 border-emerald-200" : "")}>
-        <p className={"text-sm font-medium mb-6 " + (brk ? "text-emerald-600" : "text-indigo-600")}>{brk ? "\u2615 Break" : "\uD83D\uDCDA Study"}</p>
+        <p className={"text-sm font-medium mb-6 " + (brk ? "text-emerald-600" : "text-indigo-600")}>{brk ? "☕ Break" : "📚 Study"}</p>
 
         <div className="relative inline-flex items-center justify-center mb-8">
           <svg className="w-52 h-52 -rotate-90" viewBox="0 0 200 200">

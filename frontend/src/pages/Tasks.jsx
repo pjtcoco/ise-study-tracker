@@ -50,7 +50,7 @@ const Tasks = () => {
       </div>
 
       {filtered.length === 0 ? (
-        <div className="bg-white rounded-xl shadow-sm border p-16 text-center"><p className="text-5xl mb-4">\u2705</p><h3 className="text-xl font-semibold">No tasks</h3></div>
+        <div className="bg-white rounded-xl shadow-sm border p-16 text-center"><p className="text-5xl mb-4">✅</p><h3 className="text-xl font-semibold">No tasks</h3></div>
       ) : (
         <div className="space-y-3">
           {filtered.map((t) => (

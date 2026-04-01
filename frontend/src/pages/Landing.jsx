@@ -4,7 +4,7 @@ const Landing = () => (
   <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900">
     <nav className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
       <div className="flex items-center gap-2">
-        <span className="text-3xl">\uD83D\uDCDA</span>
+        <span className="text-3xl">📚</span>
         <span className="text-xl font-bold text-white">ISE StudyTracker</span>
       </div>
       <div className="flex gap-3">

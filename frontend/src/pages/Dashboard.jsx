@@ -42,7 +42,7 @@ const Dashboard = () => {
         {cards.map(({ label, value, bg, link }) => (
           <Link to={link} key={label} className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:shadow-md transition-shadow">
             <div className={"w-10 h-10 rounded-lg flex items-center justify-center text-lg mb-3 " + bg}>
-              {label === "Active Courses" ? "\uD83C\uDF93" : label === "Pending Tasks" ? "\uD83D\uDCCB" : label === "Study Hours" ? "\u23F0" : "\uD83D\uDD25"}
+              {label === "Active Courses" ? "🎓" : label === "Pending Tasks" ? "📋" : label === "Study Hours" ? "\u23F0" : "🔥"}
             </div>
             <p className="text-2xl font-bold text-gray-900">{value}</p>
             <p className="text-sm text-gray-500">{label}</p>
@@ -102,16 +102,16 @@ const Dashboard = () => {
         <h2 className="text-lg font-semibold mb-4">Quick Actions</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <Link to="/courses" className="flex flex-col items-center gap-2 p-4 rounded-xl bg-indigo-50 hover:bg-indigo-100">
-            <span className="text-2xl">\uD83C\uDF93</span><span className="text-sm font-medium text-indigo-700">Add Course</span>
+            <span className="text-2xl">🎓</span><span className="text-sm font-medium text-indigo-700">Add Course</span>
           </Link>
           <Link to="/tasks" className="flex flex-col items-center gap-2 p-4 rounded-xl bg-amber-50 hover:bg-amber-100">
-            <span className="text-2xl">\uD83D\uDCCB</span><span className="text-sm font-medium text-amber-700">New Task</span>
+            <span className="text-2xl">📋</span><span className="text-sm font-medium text-amber-700">New Task</span>
           </Link>
           <Link to="/notes" className="flex flex-col items-center gap-2 p-4 rounded-xl bg-emerald-50 hover:bg-emerald-100">
-            <span className="text-2xl">\uD83D\uDCDD</span><span className="text-sm font-medium text-emerald-700">Write Note</span>
+            <span className="text-2xl">📝</span><span className="text-sm font-medium text-emerald-700">Write Note</span>
           </Link>
           <Link to="/timer" className="flex flex-col items-center gap-2 p-4 rounded-xl bg-red-50 hover:bg-red-100">
-            <span className="text-2xl">\u23F1\uFE0F</span><span className="text-sm font-medium text-red-600">Study Now</span>
+            <span className="text-2xl">⏱️</span><span className="text-sm font-medium text-red-600">Study Now</span>
           </Link>
         </div>
       </div>

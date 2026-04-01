@@ -39,7 +39,7 @@ const Courses = () => {
 
       {courses.length === 0 ? (
         <div className="bg-white rounded-xl shadow-sm border p-16 text-center">
-          <p className="text-5xl mb-4">\uD83D\uDCDA</p><h3 className="text-xl font-semibold mb-2">No courses yet</h3>
+          <p className="text-5xl mb-4">📚</p><h3 className="text-xl font-semibold mb-2">No courses yet</h3>
           <button onClick={() => setModal(true)} className="px-4 py-2 bg-indigo-600 text-white rounded-lg">Add First Course</button>
         </div>
       ) : (

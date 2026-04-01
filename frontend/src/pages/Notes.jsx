@@ -29,6 +29,27 @@ const Notes = () => {
   const del = async (id) => { if (!confirm("Delete?")) return; try { await deleteNote(id); toast.success("Deleted"); load(); } catch {} };
   const set = (k, v) => setForm({ ...form, [k]: v });
 
+  const exportPdf = (note) => {
+    const w = window.open("", "_blank");
+    w.document.write("<html><head><title>" + note.title + "</title>");
+    w.document.write("<style>body{font-family:Arial,sans-serif;padding:40px;max-width:800px;margin:0 auto;} h1{color:#4f46e5;border-bottom:2px solid #e5e7eb;padding-bottom:10px;} .meta{color:#6b7280;font-size:14px;margin-bottom:20px;} .content{white-space:pre-wrap;line-height:1.8;} .tags{margin-top:20px;} .tag{background:#f1f5f9;padding:4px 12px;border-radius:20px;font-size:12px;margin-right:8px;display:inline-block;}</style>");
+    w.document.write("</head><body>");
+    w.document.write("<h1>" + note.title + "</h1>");
+    w.document.write("<div class='meta'>");
+    if (note.course) w.document.write("Course: " + note.course.name + " | ");
+    w.document.write("Date: " + new Date(note.updatedAt || note.createdAt).toLocaleDateString());
+    w.document.write(" | ISE StudyTracker - University of Duisburg-Essen</div>");
+    w.document.write("<div class='content'>" + (note.content || "").replace(/\n/g, "<br>") + "</div>");
+    if (note.tags && note.tags.length > 0) {
+      w.document.write("<div class='tags'>");
+      note.tags.forEach((t) => w.document.write("<span class='tag'>" + t + "</span>"));
+      w.document.write("</div>");
+    }
+    w.document.write("</body></html>");
+    w.document.close();
+    w.print();
+  };
+
   const filtered = notes.filter((n) => !search || n.title.toLowerCase().includes(search.toLowerCase()) || (n.content && n.content.toLowerCase().includes(search.toLowerCase())));
 
   if (loading) return <div className="flex items-center justify-center h-64"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600"></div></div>;
@@ -45,14 +66,17 @@ const Notes = () => {
         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Search notes..." />
 
       {filtered.length === 0 ? (
-        <div className="bg-white rounded-xl shadow-sm border p-16 text-center"><p className="text-5xl mb-4">\uD83D\uDCDD</p><h3 className="text-xl font-semibold">No notes yet</h3></div>
+        <div className="bg-white rounded-xl shadow-sm border p-16 text-center"><p className="text-5xl mb-4">📝</p><h3 className="text-xl font-semibold">No notes yet</h3></div>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((n) => (
             <div key={n._id} className="bg-white rounded-xl shadow-sm border p-5 hover:shadow-md cursor-pointer group" onClick={() => edit(n)}>
               <div className="flex items-start justify-between mb-2">
                 <h3 className="font-semibold truncate">{n.title}</h3>
-                <button onClick={(e) => { e.stopPropagation(); del(n._id); }} className="p-1 opacity-0 group-hover:opacity-100 text-red-400 text-sm">Del</button>
+                <div className="flex gap-1 opacity-0 group-hover:opacity-100">
+                  <button onClick={(e) => { e.stopPropagation(); exportPdf(n); }} className="p-1 text-indigo-500 text-xs" title="Export PDF">PDF</button>
+                  <button onClick={(e) => { e.stopPropagation(); del(n._id); }} className="p-1 text-red-400 text-xs">Del</button>
+                </div>
               </div>
               {n.course && <span className="text-xs px-2 py-0.5 rounded-full inline-block mb-2" style={{ backgroundColor: (n.course.color || "#6b7280") + "20", color: n.course.color || "#6b7280" }}>{n.course.name}</span>}
               <p className="text-sm text-gray-500 line-clamp-3 mb-3">{n.content || "No content"}</p>
@@ -79,7 +103,7 @@ const Notes = () => {
               <div><label className="block text-sm font-medium text-gray-700 mb-1">Content</label>
                 <textarea value={form.content} onChange={(e) => set("content", e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono text-sm" rows="10" /></div>
-              <div><label className="block text-sm font-medium text-gray-700 mb-1">Tags (comma-separated)</label>
+              <div><label className="block text-sm font-medium text-gray-700 mb-1">Tags</label>
                 <input value={form.tags} onChange={(e) => set("tags", e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" /></div>
               <div className="flex gap-3 pt-2">
                 <button type="submit" className="flex-1 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700">{editId ? "Update" : "Create"}</button>
