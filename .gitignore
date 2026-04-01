@@ -1,0 +1,11 @@
+node_modules/
+.env
+.vite/
+dist/
+build/
+*.log
+.DS_Store
+upgrade.js
+setup.js
+setup.ps1
+setup.sh
