@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "/api" });
+const API = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || "/api",
+});
 
 API.interceptors.request.use((config) => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -16,7 +18,7 @@ API.interceptors.response.use(
       window.location.href = "/login";
     }
     return Promise.reject(err);
-  }
+  },
 );
 
 export const loginUser = (data) => API.post("/auth/login", data);
@@ -50,7 +52,8 @@ export const getSchedule = () => API.get("/schedule");
 export const getLectures = () => API.get("/lectures");
 export const getLecture = (id) => API.get("/lectures/" + id);
 export const uploadLecture = (data) => API.post("/lectures", data);
-export const askLecture = (id, data) => API.post("/lectures/" + id + "/ask", data);
+export const askLecture = (id, data) =>
+  API.post("/lectures/" + id + "/ask", data);
 export const deleteLecture = (id) => API.delete("/lectures/" + id);
 
 export default API;
