@@ -24,7 +24,7 @@ const Register = () => {
     <div className="min-h-screen flex">
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-indigo-600 to-purple-900 items-center justify-center p-12">
         <div className="max-w-md text-white">
-          <span className="text-6xl mb-6 block">\uD83D\uDE80</span>
+          <span className="text-6xl mb-6 block">🚀</span>
           <h2 className="text-4xl font-bold mb-4">Start Your Journey</h2>
           <p className="text-indigo-200 text-lg">Join ISE StudyTracker today.</p>
         </div>

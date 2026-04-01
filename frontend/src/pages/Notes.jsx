@@ -91,7 +91,7 @@ const Notes = () => {
           <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between p-6 border-b">
               <h2 className="text-xl font-semibold">{editId ? "Edit" : "New"} Note</h2>
-              <button onClick={() => { setEditor(false); setEditId(null); }} className="text-2xl text-gray-400">\u00D7</button>
+              <button onClick={() => { setEditor(false); setEditId(null); }} className="text-2xl text-gray-400">×</button>
             </div>
             <form onSubmit={submit} className="p-6 space-y-4">
               <div><label className="block text-sm font-medium text-gray-700 mb-1">Title *</label>

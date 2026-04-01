@@ -71,7 +71,7 @@ const Courses = () => {
           <div className="bg-white rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between p-6 border-b">
               <h2 className="text-xl font-semibold">{editId ? "Edit" : "Add"} Course</h2>
-              <button onClick={() => { setModal(false); setEditId(null); }} className="text-2xl text-gray-400">\u00D7</button>
+              <button onClick={() => { setModal(false); setEditId(null); }} className="text-2xl text-gray-400">×</button>
             </div>
             <form onSubmit={submit} className="p-6 space-y-4">
               <div><label className="block text-sm font-medium text-gray-700 mb-1">Name *</label>

@@ -1,7 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 
-const emojiMap = {
+const replacements = {
+  "\\u21BB": "↻",
+  "\\u00D7": "×",
+  "\\u2630": "☰",
   "\\uD83D\\uDCDA": "📚",
   "\\uD83C\\uDFE0": "🏠",
   "\\uD83C\\uDF93": "🎓",
@@ -17,6 +20,9 @@ const emojiMap = {
   "\\uD83D\\uDCAA": "💪",
   "\\uD83D\\uDCC5": "📅",
   "\\uD83E\\uDD16": "🤖",
+  "\\\\u21BB": "↻",
+  "\\\\u00D7": "×",
+  "\\\\u2630": "☰",
   "\\\\uD83D\\\\uDCDA": "📚",
   "\\\\uD83C\\\\uDFE0": "🏠",
   "\\\\uD83C\\\\uDF93": "🎓",
@@ -34,9 +40,8 @@ const emojiMap = {
   "\\\\uD83E\\\\uDD16": "🤖",
 };
 
-const files = [
+const targetFiles = [
   "frontend/src/components/Layout.jsx",
-  "frontend/src/pages/Landing.jsx",
   "frontend/src/pages/Dashboard.jsx",
   "frontend/src/pages/Courses.jsx",
   "frontend/src/pages/Tasks.jsx",
@@ -46,22 +51,25 @@ const files = [
   "frontend/src/pages/Profile.jsx",
   "frontend/src/pages/AiTutor.jsx",
   "frontend/src/pages/Schedule.jsx",
+  "frontend/src/pages/Landing.jsx",
+  "frontend/src/pages/Login.jsx",
+  "frontend/src/pages/Register.jsx",
 ];
 
-files.forEach((filePath) => {
-  if (!fs.existsSync(filePath)) return;
+targetFiles.forEach((file) => {
+  if (!fs.existsSync(file)) return;
 
-  let content = fs.readFileSync(filePath, "utf8");
+  let content = fs.readFileSync(file, "utf8");
 
-  Object.keys(emojiMap).forEach((key) => {
-    const regex = new RegExp(key, "g");
-    content = content.replace(regex, emojiMap[key]);
+  Object.keys(replacements).forEach((old) => {
+    const regex = new RegExp(old, "g");
+    content = content.replace(regex, replacements[old]);
   });
 
-  fs.writeFileSync(filePath, content, "utf8");
-  console.log("✅ Fixed:", filePath);
+  fs.writeFileSync(file, content, "utf8");
+  console.log("Fixed:", file);
 });
 
-console.log("\n🎉 All emoji issues should now be fixed!");
-console.log("Restart your frontend:");
+console.log("\n✅ All escaped characters should now be fixed.");
+console.log("Please restart your frontend:");
 console.log("cd frontend && npm run dev");

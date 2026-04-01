@@ -48,7 +48,7 @@ const Layout = ({ children }) => {
       </aside>
       <div className="flex-1 flex flex-col min-h-screen min-w-0">
         <header className="bg-white border-b border-gray-200 px-4 lg:px-8 py-4 flex items-center gap-4 sticky top-0 z-20">
-          <button onClick={() => setOpen(true)} className="lg:hidden p-2 rounded-lg hover:bg-gray-100 text-xl">\u2630</button>
+          <button onClick={() => setOpen(true)} className="lg:hidden p-2 rounded-lg hover:bg-gray-100 text-xl">☰</button>
           <h2 className="text-lg font-semibold text-gray-800 flex-1">{(nav.find((n) => n.path === loc.pathname) || {}).label || "ISE StudyTracker"}</h2>
         </header>
         <main className="flex-1 p-4 lg:p-8 overflow-auto">{children}</main>

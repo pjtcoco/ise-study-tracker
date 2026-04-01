@@ -87,7 +87,7 @@ const Timer = () => {
             className={"w-14 h-14 rounded-full flex items-center justify-center text-white text-2xl " + (running ? "bg-amber-500" : brk ? "bg-emerald-500" : "bg-indigo-600")}>
             {running ? "\u23F8" : "\u25B6"}
           </button>
-          <button onClick={reset} className="w-14 h-14 rounded-full flex items-center justify-center bg-gray-200 text-gray-600 text-2xl">\u21BB</button>
+          <button onClick={reset} className="w-14 h-14 rounded-full flex items-center justify-center bg-gray-200 text-gray-600 text-2xl">↻</button>
         </div>
 
         <div className="mt-8 max-w-xs mx-auto">
